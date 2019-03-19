@@ -120,15 +120,6 @@ def join_key_value(key, value, separator='='):
         + re.sub(r'^ +', lambda m: r'\ ' * m.end(), _base_escape(value))
 
 _escapes = {
-    '\t': r'\t',
-    '\n': r'\n',
-    '\f': r'\f',
-    '\r': r'\r',
-    '!': r'\!',
-    '#': r'\#',
-    ':': r'\:',
-    '=': r'\=',
-    '\\': r'\\',
 }
 
 def _esc(m):
@@ -150,7 +141,8 @@ def _esc(m):
             return '\\u{0:04x}'.format(c)
 
 def _base_escape(field):
-    return re.sub(r'[^\x20-\x7E]|[\\#!=:]', _esc, field)
+    return field
+#    return re.sub(r'[^\x20-\x7E]|[\\#!=:]', _esc, field)
 
 def escape(field):
     """
@@ -165,7 +157,8 @@ def escape(field):
     :type field: text string
     :rtype: text string
     """
-    return _base_escape(field).replace(' ', r'\ ')
+    # return _base_escape(field).replace(' ', r'\ ')
+    return field
 
 DAYS_OF_WEEK = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
